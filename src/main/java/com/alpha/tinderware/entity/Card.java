@@ -15,7 +15,17 @@ public class Card {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
     private int idu;
+
     private int idp;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "user_idu", nullable = false)
+    private User user;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "product_idp", nullable = false)
+    private Product product;
 
 }

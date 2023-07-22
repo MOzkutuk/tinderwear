@@ -2,6 +2,7 @@ package com.alpha.tinderware.controller;
 
 import com.alpha.tinderware.dao.ProductDAO;
 import com.alpha.tinderware.dto.ProductBottomWear;
+import com.alpha.tinderware.dto.ProductDTO;
 import com.alpha.tinderware.dto.ProductTopWear;
 import com.alpha.tinderware.dao.BottomWearRepository;
 import com.alpha.tinderware.dao.MatchParametersRepository;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @RestController("/product/controller")
 public class ProductController {
@@ -38,8 +40,28 @@ public class ProductController {
     @GetMapping("/showProducts")
     public List<Product> getAllProducts(){
 
+
+
         return productDAO.findAll();
     }
+
+//    @GetMapping("/showProductss")
+//    public List<ProductDTO> getAllProductss(){
+//
+//        List<Product> products = productDAO.findAll();
+//        return products.stream()
+//                .map(this::convertToDTO)
+//                .collect(Collectors.toList());
+//
+//    }
+//
+//    private ProductDTO convertToDTO(Product product) {
+//        ProductDTO dto = new ProductDTO();
+//        dto.setId(product.getId());
+//        dto.setName(product.getName());
+//        // Set other fields as needed
+//        return dto;
+//    }
 
     @GetMapping("/getProduct/{id}")
     public Product getProductById(@PathVariable int id){
